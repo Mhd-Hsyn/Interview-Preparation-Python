@@ -1,0 +1,288 @@
+"Principal Software Engineer" OR "Staff Engineer"
+
+Act as a Principal Software Architect and Mentor. Explain [Topic] with deep internal details (memory, constraints, pros/cons) but use simple real-world analogies. Treat me like a Senior Engineer candidate. Be direct, technical, and practical and use Roman Urdu
+
+
+Summary: Your Roadmap Order
+Yeh order follow karein preparation ke liye:
+
+Step 1: Python Advanced (Memory, GIL, Generators).
+
+Step 2: Database & SQL Optimization (Postgres Internals, Indexing).
+
+Step 3: Django/DRF Deep Dive (Middleware, Signals, Serializers).
+
+Step 4: Testing (Pytest, Mocking) - Log isay skip karte hain, aap mat karna.
+
+Step 5: Redis & Caching Patterns.
+
+Step 6: Async Python & FastAPI.
+
+Step 7: Celery & Background Tasks.
+
+Step 8: RabbitMQ & Event Driven Architecture.
+
+Step 9: Docker & CI/CD basics.
+
+Step 10: System Design (Design Instagram, Uber, etc. - High Level).
+
+
+
+
+Phase 1: Python Internals & Advanced Core (The Foundation)
+Interviewer check karega: "Kya yeh banda language limitations aur memory ko samajhta hai?"
+
+	Memory Management:
+
+		Stack vs Heap memory in Python.
+
+		Reference Counting vs Garbage Collection (Generational GC).
+
+		__slots__ ka use memory optimization ke liye.
+
+		Deep copy vs Shallow copy pitfalls.
+
+		Concurrency & Parallelism (Crucial):
+
+		GIL (Global Interpreter Lock): Kyun hai? CPU-bound vs I/O-bound tasks mein iska asar.
+
+		threading vs multiprocessing vs asyncio (kab kya use karna hai).
+
+		concurrent.futures (ThreadPoolExecutor vs ProcessPoolExecutor).
+
+	Advanced OOP & Metaprogramming:
+
+		Magic Methods (Dunder methods: __new__, __init__, __call__, __enter__).
+
+		Metaclasses: Classes kaise banti hain runtime par.
+
+		Decorators: With arguments, Class decorators, preserving metadata (functools.wraps).
+
+		Abstract Base Classes (ABC).
+
+		Modern Python (3.10+):
+
+		Type Hinting (Generics, TypeVars, Protocols). Static analysis with mypy.
+
+		Walrus operator (:=).
+
+		Pattern Matching (match case).
+
+		Functional Programming Tools:
+
+		Generators (yield) vs Iterators (Memory efficient looping).
+
+		itertools and functools module usage.
+
+		Lambdas and closures.
+
+
+Phase 2: Database Mastery (Beyond ORM)
+Senior dev sirf ORM use nahi karta, wo Database Engine ko samajhta hai.
+
+	Relational DB Internals (PostgreSQL Focus):
+
+		Indexing: B-Tree, Hash, GIN, GiST (kab kaunsa lagana hai).
+
+		ACID Properties: Deep dive into Atomicity and Isolation levels (Read Committed vs Serializable).
+
+		Locking: Pessimistic Locking (select_for_update) vs Optimistic Locking.
+
+		Partioning & Sharding: Horizontal vs Vertical scaling concepts.
+
+	Advanced Django ORM:
+
+		Query Optimization: select_related (JOIN) vs prefetch_related (Python-level join).
+
+		N+1 Problem: Identification and fixing.
+
+		Aggregations & Annotations: Case, When, F(), Q() expressions.
+
+		Raw SQL: Kab ORM ko bypass karke Manager.raw() ya cursor use karna hai.
+
+		Transactions: atomic() blocks aur error handling.
+
+
+Phase 3: Django & DRF Architecture
+Framework user nahi, Framework extender banna hai.
+
+	Django Core Architecture:
+
+		Request-Response Lifecycle (WSGI/ASGI handlers).
+
+		Middleware: Custom middleware likhna (e.g., Request Logging, IP Blocking).
+
+		Signals: Kyun avoid karne chahiye? (Implicit vs Explicit logic).
+
+		Context Processors: Global data injection.
+
+	DRF (Deep Dive):
+
+		Serializers: ModelSerializer vs Serializer. Nested Writes (create vs update override).
+
+		ViewSets vs Generics vs APIView: Kab kya use karein?
+
+		Permissions: Custom permission classes (e.g., Object-level permissions).
+
+		Throttling: Custom rate limiting logic.
+
+		Filtering: django-filter integration and custom filter backends.
+
+		Authentication: JWT (SimpleJWT) flow customization vs Session Auth.
+
+
+Phase 4: Testing & Code Quality (The Difference Maker)
+Agar aap tests nahi likhte, aap Senior nahi hain. Period.
+
+	Testing Frameworks:
+
+		Pytest: Fixtures, Parametrized tests, Markers.
+
+		Mocking: unittest.mock (patching external APIs, DB calls).
+
+		TDD: Test Driven Development mindset.
+
+		Quality Tools:
+
+		Linters: flake8, ruff.
+
+		Formatters: black.
+
+		Pre-commit hooks.
+
+
+Phase 5: Asynchronous & Modern Backend (FastAPI)
+Performance aur Modern standards.
+
+	FastAPI Core:
+
+		Pydantic V2: Data validation and schema definition.
+
+		Dependency Injection: System ko loosely coupled rakhne ke liye.
+
+		Async/Await: Non-blocking I/O flow.
+
+		Starlette: FastAPI ke neeche jo engine hai uski understanding.
+
+		WebSockets (Real-time):
+
+		Django Channels: ASGI, Consumers, Redis Channel Layers.
+
+		FastAPI WebSockets: Managing connection managers, handling 10k+ connections.
+
+
+Phase 6: Distributed Systems & Microservices
+Scale kaise karein jab 1 server kaafi na ho?
+
+	Caching Strategies (Redis):
+
+		Patterns: Cache-Aside, Write-Through, Write-Back.
+
+		Redis Data Types: Strings, Hashes, Sets, Sorted Sets (Leaderboards).
+
+		TTL & Eviction Policies: Memory full hone par kya hoga?
+
+		Task Queues (Celery):
+
+		Workflows: Chains, Groups, Chords (Dependent tasks).
+
+		Brokers: Redis vs RabbitMQ as broker.
+
+		Best Practices: Idempotency (Task do baar chale to kya hoga?), Retries, Visibility Timeout.
+
+		Message Brokers (RabbitMQ/Kafka):
+
+		RabbitMQ: Exchanges (Direct, Topic, Fanout), Queues, Bindings.
+
+		Pattern: Publisher/Subscriber model.
+
+		DLQ (Dead Letter Queue): Failed messages ko handle karna.
+
+		Microservices Communication: Event-Driven Architecture.
+
+
+Phase 7: DevOps, Deployment & Security
+Code likh liya, ab chalana kahan hai?
+
+	Containerization:
+
+		Docker: Multi-stage builds (Small image size), Docker Compose.
+
+		CI/CD:
+
+		GitHub Actions ya GitLab CI pipelines (Lint -> Test -> Build -> Deploy).
+
+		Security (OWASP Top 10):
+
+		SQL Injection prevention (ORM does it, but know the risks).
+
+		XSS & CSRF protection.
+
+		Auth: OAuth2 flows, OpenID Connect, RBAC (Role Based) vs ABAC (Attribute Based) access control using OpenFGA (optional but good).
+
+		Observability:
+
+		Logging (Sentry).
+
+		Monitoring (Prometheus + Grafana basics).
+
+
+
+###################################################################################################################################################
+
+
+
+
+
+############## Roadmap: Step 1 (Python Core & Fundamentals) ##############
+
+Module 1.1: Data Structures & Memory Internals (The Base)
+Architecture ke liye zaroori hai kiyunke ghalat data structure poori service slow kar sakta hai.
+
+	Mutable vs Immutable: Memory allocation kaise hoti hai? (Stack vs Heap).
+
+	List vs Tuple: Sirf bracket ka farq nahi hai, memory overhead aur caching ka farq hai.
+
+	Hashing (Dicts & Sets): Dictionary O(1) kiyun hoti hai? Hash collisions kya hoti hain?
+
+	Variable References: Python mein "Pass by Value" hai ya "Pass by Reference"? (Ye sawal sabse important hai).
+
+
+Module 1.2: Advanced Control Flow (Code Quality)
+Maintainable aur Clean code likhne ke liye.
+
+	Iterators vs Generators (yield): Memory efficient processing for millions of records.
+
+	Context Managers (with): Resource management (DB connections, Files locks) khud banana.
+
+	Decorators & Closures: functools.wraps, nested functions, aur state retention.
+
+	Scope & Namespaces: LEGB Rule (Local, Enclosing, Global, Built-in).
+
+
+Module 1.3: OOP & Metaprogramming (Framework Design)
+Agar apna framework ya library likhni ho.
+
+	Magic Methods (Dunder): __new__ vs __init__, __call__, __getitem__.
+
+	Inheritance: MRO (Method Resolution Order) aur Diamond Problem.
+
+	Slots (__slots__): Millions of objects create karte waqt RAM kaise bachayein.
+
+	Metaclasses: Class ko create karne wali Class.
+
+
+Module 1.4: Concurrency & Python Internals (Performance)
+High Load systems ke liye.
+
+	GIL (Global Interpreter Lock): Iska actual mechanism kya hai?
+
+	Threading vs Multiprocessing: CPU Bound vs I/O Bound tasks ke liye decision making.
+
+	Garbage Collection: Reference Counting kya hai aur Circular References (gc module) kaise clean hoti hain.
+
+
+
+
+
+
